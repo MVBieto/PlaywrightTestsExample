@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "homePage": "npx playwright test tests/homePageTest.spec.ts",
+    "trialPage": "npx playwright test tests/trialPageTest.spec.ts",
+    "full": "npx playwright test"
   },
   "keywords": [],
   "author": "",
