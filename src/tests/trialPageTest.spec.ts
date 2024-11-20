@@ -3,33 +3,34 @@ import { common } from '../pages/CommonPage';
 import 'playwright'
 import 'playwright-core'
 
-test.describe('Sanity Test - HomePage initials', () => {
-  test('Navigate to home page and validate business plans', async ({ page }) => {
+test.describe('Validate Start Trial page', () => {
+  test('From HomePage, go to Start trial page and fill the necessary information', async ({ page }) => {
     const commonPage = new common(page)
     await commonPage.navigateToHome()
     await commonPage.acceptTermsNConditions()
 
-    //go to plans/business
-    await commonPage.clickButton(commonPage.businessPlansButton)
+    //Go to Start Trial Page
+    await commonPage.clickButton(commonPage.businessNavigationBar)
+    await commonPage.clickButton(commonPage.startFreeTrialButton)
 
-    // validate 3 main business plan panels exist
-    expect(commonPage.planCards).toHaveCount(3)
-    expect(commonPage.teamsCard).toBeVisible()
-    expect(commonPage.businessCard).toBeVisible()
-    expect(commonPage.enterPriseCard).toBeVisible()
+    //Fill the data of the Start Trial form
+    await commonPage.waitForLocator(commonPage.startTrialFormPageTitle)
+    await commonPage.inputDataField(commonPage.fullNameField, 'testName')
+    await commonPage.inputDataField(commonPage.businessEmailField, 'testBusinessEmail@yopmail.com')
+    await commonPage.inputDataField(commonPage.companyNameField, 'BarcelonaQACheckingYourPage')
+    await commonPage.inputDataField(commonPage.companyAddressField, 'Barcelona City')
+    await commonPage.selectDropdownWithValues(commonPage.choosePlanDropdownMenu, 'Teams')
+    await commonPage.selectDropdownWithValues(commonPage.countryDropdownMenu, 'Spain')
+    await commonPage.selectDropdownWithValues(commonPage.companySizeDropdownMenu, '1-10 users')
+    await commonPage.clickButton(commonPage.europeanUnionServerStoringRadioButton)
 
-    //Move to Personal Plans
-    await commonPage.clickButton(commonPage.planPersonalSlider)
-    await commonPage.waitForLocator(commonPage.freeCard)
+    // await commonPage.clickButton(commonPage.submitButton)
 
-    // validate 3 main personal plan panels exist
-    expect(commonPage.planCards).toHaveCount(3)
-    expect(commonPage.freeCard).toBeVisible()
-    expect(commonPage.premiumCard).toBeVisible()
-    expect(commonPage.familyCard).toBeVisible()
-
-
-    await page.waitForTimeout(2000)
+    await page.waitForTimeout(5000)
   })
-})
 
+  // TO-DO
+  // test('Negative-TC', async ({ page }) => {
+  //   const commonPage = new common(page)
+  // })
+})

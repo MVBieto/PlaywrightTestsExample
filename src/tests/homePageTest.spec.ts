@@ -4,13 +4,13 @@ import 'playwright'
 import 'playwright-core'
 
 test.describe('Sanity Test - HomePage initials', () => {
-  test('Navigate to home page and validate title', async ({ page }) => {
-    const commonPage = new common(page);
-    await commonPage.navigateToHome();
-    expect(await page.title()).toBe('Securely Store, Manage & Autofill Passwords | NordPass');
-  });
+  test('Open home page and validate title', async ({ page }) => {
+    const commonPage = new common(page)
+    await commonPage.navigateToHome()
+    expect(await page.title()).toBe('Securely Store, Manage & Autofill Passwords | NordPass')
+  })
 
-  test('Navigate to home page and validate business plans', async ({ page }) => {
+  test('From HomePage, navigate to Business plans page and validate business plans', async ({ page }) => {
     const commonPage = new common(page)
     await commonPage.navigateToHome()
     await commonPage.acceptTermsNConditions()
