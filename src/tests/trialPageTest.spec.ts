@@ -26,7 +26,7 @@ test.describe('Validate Start Trial page', () => {
 
     // await commonPage.clickButton(commonPage.submitButton)
 
-    await page.waitForTimeout(5000)
+    await page.waitForTimeout(2000)
   })
 
   // TO-DO

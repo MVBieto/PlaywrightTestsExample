@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "homePage": "npx playwright test tests/homePageTest.spec.ts",
-    "trialPage": "npx playwright test tests/trialPageTest.spec.ts",
+    "homepage": "npx playwright test tests/homePageTest.spec.ts",
+    "trialpage": "npx playwright test tests/trialPageTest.spec.ts",
     "full": "npx playwright test"
   },
   "keywords": [],
