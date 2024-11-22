@@ -24,7 +24,7 @@ test.describe('Validate Start Trial page', () => {
     await commonPage.selectDropdownWithValues(commonPage.companySizeDropdownMenu, '1-10 users')
     await commonPage.clickButton(commonPage.europeanUnionServerStoringRadioButton)
 
-    // await commonPage.clickButton(commonPage.submitButton)
+    // await commonPage.clickButton(commonPage.submitButton) Not implemented, don't worry :)
 
     await page.waitForTimeout(2000)
   })
