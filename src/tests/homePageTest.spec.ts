@@ -3,8 +3,8 @@ import { common } from '../pages/CommonPage';
 import 'playwright'
 import 'playwright-core'
 
-test.describe('Sanity Test - HomePage initials', () => {
-  test('Open home page and validate title', async ({ page }) => {
+test.describe('Initial Tests, Sanity and Business Plans', () => {
+  test('Sanity test - Open home page and validate title', async ({ page }) => {
     const commonPage = new common(page)
     await commonPage.navigateToHome()
     expect(await page.title()).toBe('Securely Store, Manage & Autofill Passwords | NordPass')
