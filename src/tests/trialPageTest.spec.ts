@@ -1,30 +1,30 @@
-import { test, expect, Locator } from '@playwright/test'
-import { common } from '../pages/CommonPage';
+import { test } from '@playwright/test'
 import 'playwright'
 import 'playwright-core'
+import { Pages } from '../utils/PagesManager'
 
 test.describe('Validate Start Trial page', () => {
   test('From HomePage, go to Start trial page and fill the necessary information', async ({ page }) => {
-    const commonPage = new common(page)
-    await commonPage.navigateToHome()
-    await commonPage.acceptTermsNConditions()
+    const pages = new Pages(page)
+    await pages.homePage.navigateToHome()
+    await pages.homePage.acceptTermsNConditions()
 
     //Go to Start Trial Page
-    await commonPage.clickButton(commonPage.businessNavigationBar)
-    await commonPage.clickButton(commonPage.startFreeTrialButton)
+    await pages.commonPage.clickButton(pages.homePage.businessNavigationBar)
+    await pages.commonPage.clickButton(pages.homePage.startFreeTrialButton)
 
     //Fill the data of the Start Trial form
-    await commonPage.waitForLocator(commonPage.startTrialFormPageTitle)
-    await commonPage.inputDataField(commonPage.fullNameField, 'testName')
-    await commonPage.inputDataField(commonPage.businessEmailField, 'testBusinessEmail@yopmail.com')
-    await commonPage.inputDataField(commonPage.companyNameField, 'BarcelonaQACheckingYourPage')
-    await commonPage.inputDataField(commonPage.companyAddressField, 'Barcelona City')
-    await commonPage.selectDropdownWithValues(commonPage.choosePlanDropdownMenu, 'Teams')
-    await commonPage.selectDropdownWithValues(commonPage.countryDropdownMenu, 'Spain')
-    await commonPage.selectDropdownWithValues(commonPage.companySizeDropdownMenu, '1-10 users')
-    await commonPage.clickButton(commonPage.europeanUnionServerStoringRadioButton)
+    await pages.commonPage.waitForLocator(pages.trialPage.startTrialFormPageTitle)
+    await pages.commonPage.inputDataField(pages.trialPage.fullNameField, 'testName')
+    await pages.commonPage.inputDataField(pages.trialPage.businessEmailField, 'testBusinessEmail@yopmail.com')
+    await pages.commonPage.inputDataField(pages.trialPage.companyNameField, 'BarcelonaQACheckingYourPage')
+    await pages.commonPage.inputDataField(pages.trialPage.companyAddressField, 'Barcelona City')
+    await pages.commonPage.selectDropdownWithValues(pages.trialPage.choosePlanDropdownMenu, 'Teams')
+    await pages.commonPage.selectDropdownWithValues(pages.trialPage.countryDropdownMenu, 'Spain')
+    await pages.commonPage.selectDropdownWithValues(pages.trialPage.companySizeDropdownMenu, '1-10 users')
+    await pages.commonPage.clickButton(pages.trialPage.europeanUnionServerStoringRadioButton)
 
-    // await commonPage.clickButton(commonPage.submitButton) Not implemented, don't worry :)
+    // await commonPage.clickButton(pages.trialPage.submitButton) Not implemented, don't worry :)
 
     await page.waitForTimeout(2000)
   })

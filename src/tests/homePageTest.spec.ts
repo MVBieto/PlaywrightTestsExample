@@ -1,38 +1,37 @@
 import { test, expect, Locator } from '@playwright/test'
-import { common } from '../pages/CommonPage';
 import 'playwright'
 import 'playwright-core'
+import { Pages } from '../utils/PagesManager';
 
 test.describe('Initial Tests, Sanity and Business Plans', () => {
   test('Sanity test - Open home page and validate title', async ({ page }) => {
-    const commonPage = new common(page)
-    await commonPage.navigateToHome()
+    const pages = new Pages(page)
+    await pages.homePage.navigateToHome()
     expect(await page.title()).toBe('Securely Store, Manage & Autofill Passwords | NordPass')
   })
-
   test('From HomePage, navigate to Business plans page and validate business plans', async ({ page }) => {
-    const commonPage = new common(page)
-    await commonPage.navigateToHome()
-    await commonPage.acceptTermsNConditions()
+    const pages = new Pages(page)
+    await pages.homePage.navigateToHome()
+    await pages.homePage.acceptTermsNConditions()
 
     //go to plans/business
-    await commonPage.clickButton(commonPage.businessPlansButton)
+    await pages.commonPage.clickButton(pages.homePage.businessPlansButton)
 
-    // validate 3 main business plan panels exist
-    expect(commonPage.planCards).toHaveCount(3)
-    expect(commonPage.teamsCard).toBeVisible()
-    expect(commonPage.businessCard).toBeVisible()
-    expect(commonPage.enterPriseCard).toBeVisible()
+    // validate 3 main business plan cards exist
+    expect(pages.businessPlanPage.planCards).toHaveCount(3)
+    expect(pages.businessPlanPage.teamsCard).toBeVisible()
+    expect(pages.businessPlanPage.businessCard).toBeVisible()
+    expect(pages.businessPlanPage.enterPriseCard).toBeVisible()
 
-    //Move to Personal Plans
-    await commonPage.clickButton(commonPage.planPersonalSlider)
-    await commonPage.waitForLocator(commonPage.freeCard)
+    //Move to personal plans
+    await pages.commonPage.clickButton(pages.businessPlanPage.planPersonalSlider)
+    await pages.commonPage.waitForLocator(pages.businessPlanPage.freeCard)
 
     // validate 3 main personal plan panels exist
-    expect(commonPage.planCards).toHaveCount(3)
-    expect(commonPage.freeCard).toBeVisible()
-    expect(commonPage.premiumCard).toBeVisible()
-    expect(commonPage.familyCard).toBeVisible()
+    expect(pages.businessPlanPage.planCards).toHaveCount(3)
+    expect(pages.businessPlanPage.freeCard).toBeVisible()
+    expect(pages.businessPlanPage.premiumCard).toBeVisible()
+    expect(pages.businessPlanPage.familyCard).toBeVisible()
 
 
     await page.waitForTimeout(2000)
