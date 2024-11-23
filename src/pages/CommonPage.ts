@@ -26,6 +26,5 @@ export class common {
     this.waitForLocator(locator)
     await locator.click()
     await locator.type(data)
-
   }
 }
