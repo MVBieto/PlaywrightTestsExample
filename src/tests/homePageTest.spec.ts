@@ -27,7 +27,7 @@ test.describe('Initial Tests, Sanity and Business Plans', () => {
     await pages.commonPage.clickButton(pages.businessPlanPage.planPersonalSlider)
     await pages.commonPage.waitForLocator(pages.businessPlanPage.freeCard)
 
-    // validate 3 main personal plan panels exist
+    // validate 3 main personal plan cards exist
     expect(pages.businessPlanPage.planCards).toHaveCount(3)
     expect(pages.businessPlanPage.freeCard).toBeVisible()
     expect(pages.businessPlanPage.premiumCard).toBeVisible()

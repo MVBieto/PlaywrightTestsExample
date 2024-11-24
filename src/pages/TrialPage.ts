@@ -19,8 +19,4 @@ export class trial extends common {
   get companySizeDropdownMenu() { return this.page.locator('[data-testid="business-free-trial-company-size"]') }
   get europeanUnionServerStoringRadioButton() { return this.page.locator('#udc-eu') }
 
-  async navigateToHome() {
-    await this.page.goto('https://nordpass.com/');
-  }
-
 }
