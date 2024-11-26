@@ -1,6 +1,4 @@
 import { test, expect } from '@playwright/test'
-import 'playwright'
-import 'playwright-core'
 import { Pages } from '../utils/PagesManager';
 
 test.describe('Initial Tests, Sanity and Business Plans', () => {

@@ -1,6 +1,4 @@
 import { expect, test } from '@playwright/test'
-import 'playwright'
-import 'playwright-core'
 import { Pages } from '../utils/PagesManager'
 
 test.describe('Validate Start Trial page', () => {
