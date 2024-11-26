@@ -1,4 +1,4 @@
-import { test } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import 'playwright'
 import 'playwright-core'
 import { Pages } from '../utils/PagesManager'
@@ -10,27 +10,24 @@ test.describe('Validate Start Trial page', () => {
     await pages.homePage.acceptTermsNConditions()
 
     //Go to Start Trial Page
-    await pages.commonPage.clickButton(pages.homePage.businessNavigationBar)
-    await pages.commonPage.clickButton(pages.homePage.startFreeTrialButton)
+    await pages.homePage.businessNavigationBar.click()
+    await pages.homePage.startFreeTrialButton.click()
 
     //Fill the data of the Start Trial form
-    await pages.commonPage.waitForLocator(pages.trialPage.startTrialFormPageTitle)
-    await pages.commonPage.inputDataField(pages.trialPage.fullNameField, 'testName')
-    await pages.commonPage.inputDataField(pages.trialPage.businessEmailField, 'testBusinessEmail@yopmail.com')
-    await pages.commonPage.inputDataField(pages.trialPage.companyNameField, 'BarcelonaQACheckingYourPage')
-    await pages.commonPage.inputDataField(pages.trialPage.companyAddressField, 'Barcelona City')
-    await pages.commonPage.selectDropdownWithValues(pages.trialPage.choosePlanDropdownMenu, 'Teams')
-    await pages.commonPage.selectDropdownWithValues(pages.trialPage.countryDropdownMenu, 'Spain')
-    await pages.commonPage.selectDropdownWithValues(pages.trialPage.companySizeDropdownMenu, '1-10 users')
-    await pages.commonPage.clickButton(pages.trialPage.europeanUnionServerStoringRadioButton)
+    await expect(pages.trialPage.europeanUnionServerStoringRadioButton).toBeVisible()
+    await pages.trialPage.inputDataField(pages.trialPage.fullNameField, 'testName')
+    await pages.trialPage.inputDataField(pages.trialPage.businessEmailField, 'testBusinessEmail@yopmail.com')
+    await pages.trialPage.inputDataField(pages.trialPage.companyNameField, 'BarcelonaQACheckingYourPage')
+    await pages.trialPage.inputDataField(pages.trialPage.companyAddressField, 'Barcelona City')
+    await pages.trialPage.choosePlanDropdownMenu.selectOption('Teams')
+    await pages.trialPage.countryDropdownMenu.selectOption('Spain')
+    await pages.trialPage.companySizeDropdownMenu.selectOption('1-10 users')
+    await pages.trialPage.europeanUnionServerStoringRadioButton.click()
 
-    // await commonPage.clickButton(pages.trialPage.submitButton) Not implemented, don't worry :)
+    // await commonPage.clickButton(pages.trialPage.submitButton) Not implemented to avoid triggering unnecessary messages in production
+    // await expect(ThankYouPage).toBeVisible()
+    // await expect(mailtrap.getLastFiveEmails.filter(subject, from, to)).toContainText('Data')
 
-    await page.waitForTimeout(2000)
+    // await page.waitForTimeout(3000)
   })
-
-  // TO-DO
-  // test('Negative-TC', async ({ page }) => {
-  //   const commonPage = new common(page)
-  // })
 })

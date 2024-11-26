@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test'
+import { test, expect } from '@playwright/test'
 import 'playwright'
 import 'playwright-core'
 import { Pages } from '../utils/PagesManager';
@@ -15,26 +15,25 @@ test.describe('Initial Tests, Sanity and Business Plans', () => {
     await pages.homePage.acceptTermsNConditions()
 
     //go to plans/business
-    await pages.commonPage.clickButton(pages.homePage.businessPlansButton)
+    await pages.homePage.businessPlansButton.click()
 
     // validate 3 main business plan cards exist
-    expect(pages.businessPlanPage.planCards).toHaveCount(3)
-    expect(pages.businessPlanPage.teamsCard).toBeVisible()
-    expect(pages.businessPlanPage.businessCard).toBeVisible()
-    expect(pages.businessPlanPage.enterPriseCard).toBeVisible()
+    await expect(pages.businessPlanPage.planCards).toHaveCount(3)
+    await expect(pages.businessPlanPage.teamsCard).toBeVisible()
+    await expect(pages.businessPlanPage.businessCard).toBeVisible()
+    await expect(pages.businessPlanPage.enterPriseCard).toBeVisible()
 
     //Move to personal plans
-    await pages.commonPage.clickButton(pages.businessPlanPage.planPersonalSlider)
-    await pages.commonPage.waitForLocator(pages.businessPlanPage.freeCard)
+    await pages.businessPlanPage.planPersonalSlider.click()
+    await expect(pages.businessPlanPage.freeCard).toBeVisible()
 
     // validate 3 main personal plan cards exist
-    expect(pages.businessPlanPage.planCards).toHaveCount(3)
-    expect(pages.businessPlanPage.freeCard).toBeVisible()
-    expect(pages.businessPlanPage.premiumCard).toBeVisible()
-    expect(pages.businessPlanPage.familyCard).toBeVisible()
+    await expect(pages.businessPlanPage.planCards).toHaveCount(3)
+    await expect(pages.businessPlanPage.freeCard).toBeVisible()
+    await expect(pages.businessPlanPage.premiumCard).toBeVisible()
+    await expect(pages.businessPlanPage.familyCard).toBeVisible()
 
 
-    await page.waitForTimeout(2000)
   })
 })
 
