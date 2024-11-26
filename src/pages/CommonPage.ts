@@ -10,6 +10,6 @@ export class Common {
 
   async inputDataField(locator: Locator, data: string) {
     await locator.click()
-    await locator.pressSequentially(data)
+    await locator.fill(data)
   }
 }
