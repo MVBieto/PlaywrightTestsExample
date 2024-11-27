@@ -1,8 +1,8 @@
 import { Page } from "playwright-core";
-import { common } from "./CommonPage";
+import { Common } from "./CommonPage";
 
 
-export class trial extends common {
+export class Trial extends Common {
 
   constructor(page: Page) {
     super(page)
